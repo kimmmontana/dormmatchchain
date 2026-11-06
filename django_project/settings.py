@@ -46,7 +46,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Vercel sets these to the deployment and production hostnames.
 VERCEL = bool(os.environ.get("VERCEL"))
-for var in ("VERCEL_URL", "VERCEL_PROJECT_PRODUCTION_URL"):
+for var in ("VERCEL_URL", "VERCEL_BRANCH_URL", "VERCEL_PROJECT_PRODUCTION_URL"):
     if os.environ.get(var):
         ALLOWED_HOSTS.append(os.environ[var])
 
