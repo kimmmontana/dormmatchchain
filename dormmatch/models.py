@@ -27,7 +27,7 @@ class DormAccommodation(models.Model):
     occupied_status = models.CharField(max_length=10, choices=OCCUPIED_STATUS_CHOICES, default="No")
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.TextField(blank=True, null=True)
-    num_waitlist = models.CharField(max_length=6, editable= False, default="0")
+    num_waitlist = models.CharField(max_length=20, editable= False, default="0")
     image = models.ImageField(upload_to='dorm_images/', blank=True, null=True)
     # Stellar escrow: the dorm's ID in the DormMatchBooking contract and its price in XLM.
     chain_dorm_id = models.PositiveIntegerField(unique=True, blank=True, null=True)

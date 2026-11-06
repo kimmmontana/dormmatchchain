@@ -58,6 +58,9 @@ class DormAccommodationModelTests(TestCase):
     def test_solo_room_waitlist_is_not_applicable(self):
         dorm = make_dorm("Solo", 1)
         self.assertEqual(dorm.num_waitlist, "NOT APPLICABLE")
+        # SQLite ignores max_length, but PostgreSQL rejects longer values.
+        max_length = DormAccommodation._meta.get_field("num_waitlist").max_length
+        self.assertLessEqual(len(dorm.num_waitlist), max_length)
 
     def test_price_xlm_display_drops_trailing_zeros(self):
         for value, expected in (("0.5000000", "0.5"), ("50.0000000", "50"), ("12.3456789", "12.3456789")):
