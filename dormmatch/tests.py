@@ -164,6 +164,11 @@ class DormListViewTests(TestCase):
             with self.subTest(page=name):
                 self.assertEqual(self.client.get(reverse(name)).status_code, 200)
 
+    def test_pages_include_site_icons(self):
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, "images/favicon.ico")
+        self.assertContains(response, "images/apple-touch-icon.png")
+
     def test_about_page_invites_visitors_to_sign_up(self):
         response = self.client.get(reverse("aboutus"))
         self.assertContains(response, "Start your journey with DormMatch")
