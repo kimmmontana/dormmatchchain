@@ -9,7 +9,8 @@
     <title>{% block title %}Dorm Match{% endblock %}</title>
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 </head>
 <body class=" d-flex flex-column min-vh-100">
     <header class="py-3" style="background-color: white; color: #152238; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
@@ -53,6 +54,16 @@
     </header>
 
     <main class="flex-grow-1">
+        {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% block content %}
         {% endblock %}
     </main>

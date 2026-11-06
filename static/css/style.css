@@ -1,0 +1,99 @@
+/* Log in and sign up pages */
+.auth-section {
+    background-color: #f4f6f9;
+}
+
+.auth-panel {
+    position: relative;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    min-height: 100%;
+}
+
+.auth-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(21, 34, 56, 0.55) 0%, rgba(21, 34, 56, 0.95) 70%);
+}
+
+.auth-panel-content {
+    position: relative;
+    padding: 3rem 2.5rem;
+}
+
+.auth-points li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.6rem;
+}
+
+.auth-points li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+}
+
+.auth-group-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #152238;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e3e7ee;
+}
+
+.auth-form .form-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #152238;
+}
+
+.auth-form .form-control:focus,
+.auth-form .form-select:focus {
+    border-color: #152238;
+    box-shadow: 0 0 0 0.2rem rgba(21, 34, 56, 0.15);
+}
+
+.auth-field {
+    margin-bottom: 1rem;
+}
+
+/* Grid gutters already space the sign up fields. */
+.row > * > .auth-field {
+    margin-bottom: 0;
+}
+
+.auth-field.has-error .form-control,
+.auth-field.has-error .form-select {
+    border-color: #dc3545;
+}
+
+.auth-help ul {
+    padding-left: 1.1rem;
+    margin: 0.25rem 0 0;
+}
+
+.auth-link {
+    color: #152238;
+    font-weight: 600;
+}
+
+.btn-auth {
+    background-color: #152238;
+    border-color: #152238;
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-auth:hover,
+.btn-auth:focus {
+    background-color: #0d1626;
+    border-color: #0d1626;
+    color: #fff;
+}

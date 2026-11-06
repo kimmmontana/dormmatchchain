@@ -1,12 +1,75 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
 {% block content %}
-<div class="form-container">
-    <h2>Sign Up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }} <!-- renders form fields automatically -->
-        <input type="submit" value="Sign Up">
-    </form>
-    <p>Already have an account? <a href="{% url 'login' %}" class="switch-link">Login here</a></p>
-</div>
+<section class="auth-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-11">
+                <div class="card auth-card border-0 shadow rounded-3 overflow-hidden">
+                    <div class="row g-0">
+                        <!-- Brand Panel -->
+                        <div class="col-lg-4 auth-panel d-none d-lg-flex" style="background-image: url('{% static 'images/class-a-shared.jpg' %}');">
+                            <div class="auth-panel-content">
+                                <h2 class="fw-bold mb-3">Find your home away from home</h2>
+                                <p class="mb-4">Create a DormMatch account to book solo rooms and join shared dorm waitlists.</p>
+                                <ul class="list-unstyled auth-points mb-0">
+                                    <li>Matched with roommates who fit your lifestyle</li>
+                                    <li>Live availability for every dorm</li>
+                                    <li>Optional payment with a Stellar wallet</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Form -->
+                        <div class="col-lg-8 bg-white">
+                            <div class="auth-form p-4 p-md-5">
+                                <h1 class="h3 fw-bold text-dark mb-1">Create your account</h1>
+                                <p class="text-muted mb-4">Already have an account? <a href="{% url 'login' %}" class="auth-link">Log in</a></p>
+
+                                {% if form.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}{{ error }} {% empty %}Please fix the highlighted fields below.{% endfor %}
+                                </div>
+                                {% endif %}
+
+                                <form method="post" novalidate>
+                                    {% csrf_token %}
+
+                                    <h2 class="auth-group-title">Account</h2>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-md-6">{% include 'partials/form_field.html' with field=form.username %}</div>
+                                        <div class="col-md-6">{% include 'partials/form_field.html' with field=form.email %}</div>
+                                        <div class="col-md-6">{% include 'partials/form_field.html' with field=form.password1 show_help=True %}</div>
+                                        <div class="col-md-6">{% include 'partials/form_field.html' with field=form.password2 %}</div>
+                                    </div>
+
+                                    <h2 class="auth-group-title">Personal details</h2>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-md-5">{% include 'partials/form_field.html' with field=form.first_name %}</div>
+                                        <div class="col-md-4">{% include 'partials/form_field.html' with field=form.last_name %}</div>
+                                        <div class="col-md-3">{% include 'partials/form_field.html' with field=form.suffix %}</div>
+                                        <div class="col-md-4">{% include 'partials/form_field.html' with field=form.birthday %}</div>
+                                        <div class="col-md-4">{% include 'partials/form_field.html' with field=form.gender %}</div>
+                                        <div class="col-md-4">{% include 'partials/form_field.html' with field=form.contact_number %}</div>
+                                    </div>
+
+                                    <h2 class="auth-group-title">School</h2>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-md-6">{% include 'partials/form_field.html' with field=form.school %}</div>
+                                        <div class="col-md-6">{% include 'partials/form_field.html' with field=form.degree_program %}</div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-auth w-100 py-2">Create Account</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -23,6 +23,12 @@ class SignUpViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "registration/signup.html")
 
+    def test_signup_fields_use_bootstrap_widgets(self):
+        response = self.client.get(reverse("signup"))
+        self.assertContains(response, 'type="date"')
+        self.assertContains(response, 'class="form-select"')
+        self.assertContains(response, 'class="form-control"')
+
     def test_signup_creates_user_and_redirects_to_login(self):
         response = self.client.post(
             reverse("signup"),
@@ -38,8 +44,10 @@ class SignUpViewTests(TestCase):
                 "password1": "a-Strong-pass-123",
                 "password2": "a-Strong-pass-123",
             },
+            follow=True,
         )
         self.assertRedirects(response, reverse("login"))
+        self.assertContains(response, "Your account is ready.")
         self.assertTrue(get_user_model().objects.filter(username="student1").exists())
 
     def test_signup_rejects_duplicate_email(self):
@@ -54,4 +62,24 @@ class SignUpViewTests(TestCase):
             },
         )
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Please fix the highlighted fields below.")
         self.assertFalse(get_user_model().objects.filter(username="student1").exists())
+
+
+class LoginViewTests(TestCase):
+    def setUp(self):
+        get_user_model().objects.create_user(username="student1", email="juan@example.com", password="a-Strong-pass-123")
+
+    def test_login_page_renders_styled_form(self):
+        response = self.client.get(reverse("login"))
+        self.assertTemplateUsed(response, "registration/login.html")
+        self.assertContains(response, 'class="form-control"')
+
+    def test_login_with_wrong_password_shows_error(self):
+        response = self.client.post(reverse("login"), {"username": "student1", "password": "wrong"})
+        self.assertContains(response, "alert-danger")
+
+    def test_logged_in_user_is_redirected_away_from_login(self):
+        self.client.login(username="student1", password="a-Strong-pass-123")
+        response = self.client.get(reverse("login"))
+        self.assertRedirects(response, reverse("home"))
