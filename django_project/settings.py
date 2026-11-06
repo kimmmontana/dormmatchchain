@@ -44,6 +44,12 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
+# Vercel sets these to the deployment and production hostnames.
+VERCEL = bool(os.environ.get("VERCEL"))
+for var in ("VERCEL_URL", "VERCEL_PROJECT_PRODUCTION_URL"):
+    if os.environ.get(var):
+        ALLOWED_HOSTS.append(os.environ[var])
+
 CSRF_TRUSTED_ORIGINS = [f"https://{h}" for h in ALLOWED_HOSTS if h not in ("localhost", "127.0.0.1")]
 
 
@@ -99,8 +105,12 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # Uses DATABASE_URL (e.g. PostgreSQL in production) when set, SQLite otherwise.
+# Serverless functions on Vercel close connections after each request.
 DATABASES = {
-    'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}", conn_max_age=600)
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=0 if VERCEL else 600,
+    )
 }
 
 
@@ -151,6 +161,27 @@ STORAGES = {
         else "whitenoise.storage.CompressedManifestStaticFilesStorage"
     },
 }
+
+# Uploaded dorm images go to an S3-compatible bucket (e.g. Supabase Storage)
+# when S3_BUCKET is set, since serverless hosts have no persistent disk.
+S3_BUCKET = os.environ.get("S3_BUCKET")
+if S3_BUCKET:
+    STORAGES["default"] = {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "bucket_name": S3_BUCKET,
+            "endpoint_url": os.environ.get("S3_ENDPOINT_URL"),
+            "region_name": os.environ.get("S3_REGION"),
+            "access_key": os.environ.get("S3_ACCESS_KEY_ID"),
+            "secret_key": os.environ.get("S3_SECRET_ACCESS_KEY"),
+            "addressing_style": "path",
+            "signature_version": "s3v4",
+            "file_overwrite": False,
+            # Public bucket URL, e.g. <project>.supabase.co/storage/v1/object/public/<bucket>
+            "custom_domain": os.environ.get("S3_PUBLIC_URL", "").removeprefix("https://") or None,
+            "querystring_auth": False,
+        },
+    }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
