@@ -4,39 +4,274 @@
 {% load static %}
 
 {% block content %}
-<section class="about-section">
-    <h1>About Us</h1>
-    <div class="intro-box">
-        <h2>What is DormMatch?</h2>
-        <p>
-            DormMatch is dedicated to providing students with a convenient and stress-free way to find and book
-            dormitories.
-            Our platform simplifies the roommate selection process with a waitlisting feature, ensuring that studentscan
-            focus
-            on their studies while we take care of their housing needs.
+<!-- Hero -->
+<section class="about-hero text-center">
+    <div class="container">
+        <p class="about-eyebrow mb-2">About DormMatch</p>
+        <h1 class="display-4 fw-bold text-light mb-3">Student housing, made simple</h1>
+        <p class="lead text-light mx-auto mb-5" style="max-width: 680px;">
+            DormMatch helps students find, book, and share dormitories without the stress, so you can focus on your studies.
         </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="{% url 'waitlist' %}" class="btn btn-light px-4 py-2">Browse Shared Dorms</a>
+            <a href="{% url 'solodorm' %}" class="btn btn-outline-light px-4 py-2">Browse Solo Dorms</a>
+        </div>
     </div>
-    <div class="info-grid">
-        <div class="info-card">
-            <h3>Our Vision</h3>
-            <p>
-                To be the leading platform in student accommodation, ensuring that every student finds a home away from
-                home with ease and convenience.
-            </p>
-            <h3>Our Mission</h3>
-            <p>
-                Our mission is to simplify the dormitory booking process, provide a wide range of options to meet
-                different needs, and create a community where students feel safe, supported, and at home.
-            </p>
+</section>
+
+<!-- Who We Are -->
+<section class="py-5">
+    <div class="container py-lg-4">
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-6">
+                <h2 class="fw-bold text-dark mb-3">Who we are</h2>
+                <p class="text-muted fs-5">
+                    DormMatch is a dormitory booking platform that connects students with safe, affordable, and
+                    well-located accommodation, with every booking managed in one place.
+                </p>
+                <p class="text-muted">
+                    Our shared-room waitlist gives residents visibility of who they will be living with before they
+                    commit. Our solo rooms offer private accommodation that is confirmed as soon as payment is verified.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/class-a-solo-1.jpg' %}" alt="A furnished DormMatch solo room" class="img-fluid rounded-3 shadow about-photo">
+            </div>
         </div>
-        <div class="info-card">
-            <h3>Our Team</h3>
-            <p>
-                We are a dedicated team of students with a passion for helping our co-students find the perfect living
-                arrangements. Our team works tirelessly to ensure that the DormMatch platform is easy to use, reliable,
-                and meets the highest standards of quality and service.
-            </p>
+    </div>
+</section>
+
+<!-- Room Types -->
+<section class="py-5 about-muted">
+    <div class="container py-lg-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark mb-2">Our accommodations</h2>
+            <p class="text-muted fs-5 mb-0">Choose the arrangement that suits your budget and lifestyle.</p>
         </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                    <img src="{% static 'images/class-a-shared-1.jpg' %}" alt="A shared DormMatch room" class="about-card-img">
+                    <div class="card-body p-4">
+                        <h3 class="h4 fw-bold text-dark">Shared Dorms</h3>
+                        <ul class="about-checks text-muted">
+                            <li>Join a waitlist and split the room with other students</li>
+                            <li>See the age, gender, school, and program of students already waitlisted</li>
+                            <li>Confirmed automatically once the room is full</li>
+                        </ul>
+                        <a href="{% url 'waitlist' %}" class="btn btn-auth px-4">View Shared Dorms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                    <img src="{% static 'images/class-b-solo-1.jpg' %}" alt="A DormMatch solo room" class="about-card-img">
+                    <div class="card-body p-4">
+                        <h3 class="h4 fw-bold text-dark">Solo Dorms</h3>
+                        <ul class="about-checks text-muted">
+                            <li>A private room all to yourself</li>
+                            <li>No waitlist: book it directly</li>
+                            <li>Confirmed as soon as your payment is verified</li>
+                        </ul>
+                        <a href="{% url 'solodorm' %}" class="btn btn-auth px-4">View Solo Dorms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="py-5">
+    <div class="container py-lg-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark mb-2">How booking works</h2>
+            <p class="text-muted fs-5 mb-0">From sign up to move in, in four steps.</p>
+        </div>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-3">
+                <div class="about-step h-100">
+                    <span class="about-step-number">1</span>
+                    <h3 class="h5 fw-bold text-dark">Create an account</h3>
+                    <p class="text-muted mb-0">Sign up with your school details so dorms and roommates know who you are.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="about-step h-100">
+                    <span class="about-step-number">2</span>
+                    <h3 class="h5 fw-bold text-dark">Choose a dorm</h3>
+                    <p class="text-muted mb-0">Compare location, price, and capacity across shared and solo rooms.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="about-step h-100">
+                    <span class="about-step-number">3</span>
+                    <h3 class="h5 fw-bold text-dark">Pay and submit</h3>
+                    <p class="text-muted mb-0">Scan the QR code and enter your payment reference, or pay in XLM with a Stellar wallet where available.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="about-step h-100">
+                    <span class="about-step-number">4</span>
+                    <h3 class="h5 fw-bold text-dark">Track your booking</h3>
+                    <p class="text-muted mb-0">Follow your booking's status anytime under <strong>My Bookings</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Statuses -->
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body p-4">
+                <h3 class="h5 fw-bold text-dark mb-3">What your booking status means</h3>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-3">
+                        <span class="badge bg-warning text-dark mb-2">Verify</span>
+                        <p class="small text-muted mb-0">We received your booking and are checking your payment.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <span class="badge bg-info text-dark mb-2">Waitlisted</span>
+                        <p class="small text-muted mb-0">Your payment is verified and you're in line for a shared room.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <span class="badge bg-success mb-2">Approved</span>
+                        <p class="small text-muted mb-0">Your booking is confirmed. Shared rooms are approved once the waitlist reaches capacity.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <span class="badge bg-danger mb-2">Declined</span>
+                        <p class="small text-muted mb-0">The booking wasn't confirmed by the dorm administrator.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vision & Mission -->
+<section class="py-5" style="background-color: #152238;">
+    <div class="container py-lg-4">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 p-4">
+                    <h2 class="h4 fw-bold text-dark">Our Vision</h2>
+                    <p class="text-muted mb-0">
+                        To be the leading platform in student accommodation, ensuring that every student finds a home away
+                        from home with ease and convenience.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 p-4">
+                    <h2 class="h4 fw-bold text-dark">Our Mission</h2>
+                    <p class="text-muted mb-0">
+                        To simplify the dormitory booking process, provide a wide range of options to meet different needs,
+                        and create a community where students feel safe, supported, and at home.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Values -->
+        <h2 class="h4 fw-bold text-light text-center mt-5 mb-4">Our core values</h2>
+        <div class="row g-4 text-light">
+            <div class="col-sm-6 col-lg-3">
+                <h3 class="h6 fw-bold mb-2">Transparency</h3>
+                <p class="small mb-0 about-value-text">Clear pricing, room details, and booking statuses at every step.</p>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <h3 class="h6 fw-bold mb-2">Reliability</h3>
+                <p class="small mb-0 about-value-text">Live availability, so the rooms you see are rooms you can book.</p>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <h3 class="h6 fw-bold mb-2">Security</h3>
+                <p class="small mb-0 about-value-text">Verified payments and resident profiles shared without names.</p>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <h3 class="h6 fw-bold mb-2">Resident-first</h3>
+                <p class="small mb-0 about-value-text">Accommodation decisions built around our residents' needs and comfort.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-5">
+    <div class="container py-lg-4" style="max-width: 860px;">
+        <h2 class="fw-bold text-dark text-center mb-4">Frequently asked questions</h2>
+        <div class="accordion about-faq" id="aboutFaq">
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                        Do I need a crypto wallet to book?
+                    </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#aboutFaq">
+                    <div class="accordion-body text-muted">
+                        No. Every dorm accepts payment by QR code and reference number. Paying in XLM with a Stellar wallet
+                        such as Freighter is optional, and only available on dorms that show the Stellar option.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                        Can I see who my roommates will be?
+                    </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#aboutFaq">
+                    <div class="accordion-body text-muted">
+                        Yes. Each shared dorm's page lists the age, gender, school, and program of students already on its
+                        waitlist, so you can check if it fits your preference before booking. Names are kept private.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                        When is a shared room confirmed?
+                    </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#aboutFaq">
+                    <div class="accordion-body text-muted">
+                        As soon as the number of waitlisted students reaches the room's capacity, every booking for that room
+                        is approved automatically and the room is marked as full.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                        Where can I check my booking?
+                    </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#aboutFaq">
+                    <div class="accordion-body text-muted">
+                        Log in and open <strong>My Bookings</strong> from the menu under your username. It shows each
+                        booking's dorm, amount, date, and current status.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 about-muted text-center">
+    <div class="container py-lg-3">
+        {% if user.is_authenticated %}
+        <h2 class="fw-bold text-dark mb-3">Ready to find your next dorm?</h2>
+        <p class="text-muted mb-4">Browse available rooms or check on the bookings you've already made.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="{% url 'waitlist' %}" class="btn btn-auth px-4 py-2">Browse Dorms</a>
+            <a href="{% url 'booking-status' %}" class="btn btn-outline-dark px-4 py-2">My Bookings</a>
+        </div>
+        {% else %}
+        <h2 class="fw-bold text-dark mb-3">Start your journey with DormMatch</h2>
+        <p class="text-muted mb-4">Create a free account to book a solo room or join a shared dorm waitlist.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="{% url 'signup' %}" class="btn btn-auth px-4 py-2">Sign Up</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-dark px-4 py-2">Log In</a>
+        </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

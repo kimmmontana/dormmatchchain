@@ -164,6 +164,17 @@ class DormListViewTests(TestCase):
             with self.subTest(page=name):
                 self.assertEqual(self.client.get(reverse(name)).status_code, 200)
 
+    def test_about_page_invites_visitors_to_sign_up(self):
+        response = self.client.get(reverse("aboutus"))
+        self.assertContains(response, "Start your journey with DormMatch")
+        self.assertNotContains(response, "Ready to find your next dorm?")
+
+    def test_about_page_links_members_to_their_bookings(self):
+        self.client.force_login(make_user("alice"))
+        response = self.client.get(reverse("aboutus"))
+        self.assertContains(response, "Ready to find your next dorm?")
+        self.assertNotContains(response, "Start your journey with DormMatch")
+
 
 class BookingViewTests(TestCase):
     def setUp(self):
