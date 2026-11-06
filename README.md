@@ -7,7 +7,7 @@
 A student housing platform for booking solo dorms and filling shared rooms through a waitlist,<br>
 with optional on-chain payment escrow on the **Stellar** network.
 
-[![CI](https://github.com/kimmmontana/dormmatchapp/actions/workflows/ci.yml/badge.svg)](https://github.com/kimmmontana/dormmatchapp/actions/workflows/ci.yml)
+[![CI](https://github.com/kimmmontana/dormmatchchain/actions/workflows/ci.yml/badge.svg)](https://github.com/kimmmontana/dormmatchchain/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-5.2%20LTS-092E20?logo=django&logoColor=white)
@@ -90,7 +90,7 @@ Finding student housing and compatible roommates is often slow and uncertain. **
 ## Project Structure
 
 ```
-dormmatchapp/
+dormmatchchain/
 ├── .github/workflows/   # CI: Django tests and contract tests
 ├── accounts/            # Custom user model, sign-up and login
 ├── dormmatch/           # Dorms, bookings, views, and business rules
@@ -124,8 +124,8 @@ dormmatchapp/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/kimmmontana/dormmatchapp.git
-cd dormmatchapp
+git clone https://github.com/kimmmontana/dormmatchchain.git
+cd dormmatchchain
 ```
 
 ### 2. Create a virtual environment
